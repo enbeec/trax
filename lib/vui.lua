@@ -1,6 +1,6 @@
-local ui = {}
+local vui = {}
 
-ui.column_positions = {
+vui.column_positions = {
   0, -- HEX 
   12, -- N1
   30, -- F1
@@ -12,25 +12,37 @@ ui.column_positions = {
   115 -- F3
 }
 
-ui.selectables = { 2, 3, 5, 6, 8, 9 }
-ui.row_offset = 6
+vui.selectables = { 2, 3, 5, 6, 8, 9 }
+vui.row_offset = 6
 
-function ui.new()
-  return ui
+function vui.new()
+  return vui
 end
 
-function ui.screen_ruler(level)
+function vui.screen_ruler(level)
   level = level or 6
   screen.level(level)
   screen.font_face(0)
   screen.font_size(8)
 end
 
-function ui.screen_normal(level)
+function vui.screen_normal(level)
   level = level or 10
   screen.level(level)
   screen.font_face(1)
   screen.font_size(8)
 end
 
-return ui
+function vui.move(x,y,fx)
+  local xscale,yscale = 1,1
+  -- TODO: what if i made everything wiggle by doing something fun in here
+  screen.move(x*xscale,y*yscale) 
+end
+
+function vui.rect(x,y,w,h)
+  local xscale,yscale,wscale,hscale = 1,1,1,1
+  -- TODO: what if i made rectangles move around by doing something fun in here
+  screen.rect(x*xscale,y*yscale,w*wscale,h*hscale) 
+end
+
+return vui
