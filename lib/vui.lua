@@ -1,5 +1,9 @@
 local vui = {}
 
+function vui.new()
+  return vui
+end
+
 vui.column_positions = {
   0, -- HEX 
   12, -- N1
@@ -12,12 +16,16 @@ vui.column_positions = {
   115 -- F3
 }
 
-vui.selectables = { 2, 3, 5, 6, 8, 9 }
-vui.row_offset = 6
+vui.selectables = { 
+  2, -- N1
+  3, -- F1
+  5, -- N2
+  6, -- F2
+  8, -- N3
+  9  -- F3
+}
 
-function vui.new()
-  return vui
-end
+vui.row_offset = 6
 
 function vui.screen_ruler(level)
   level = level or 6
