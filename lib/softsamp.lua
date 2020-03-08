@@ -9,4 +9,14 @@ function softsamp.newInstTable()
     return t 
 end
 
+softsamp.instEntry = {
+    name = nil, 
+    istart = 0.0,
+    iend = 0.0, 
+}
+
+function softsamp.createInst(instTable, file, name)
+    -- get sample length from file
+end
+
 return softsamp
