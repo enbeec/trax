@@ -44,7 +44,7 @@ function refreshmaker()
   re:start()
 end
 
----
+--- USER INTERFACE
 
 -- factored away my aesthetic choices~
 local vui = include("lib/vui")
@@ -117,6 +117,8 @@ function redraw()
   
   screen.update()
 end
+
+--- ENCODERS AND KEYS
 
 local enc_mode = 0
 local edit_flag = 0
