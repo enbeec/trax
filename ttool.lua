@@ -22,6 +22,14 @@ local c = include("lib/counts")
 trax = { {},{}, {} }
 local ruler = {}
 
+--- TRACKER
+
+function play(itable,tstr)
+  
+end
+
+--- INIT
+
 function init()
   for i=1,3 do
     trax[i].note = c.newBlank(4)
