@@ -139,6 +139,9 @@ function enc(n,d)
       cursor.x = util.clamp((cursor.x + d*0.2), 1,6)
     elseif n == 3 then
       cursor.y = util.clamp((cursor.y + d*0.4), 1,10)
+      if cursor.y <= 1 or cursor.y >= 10 then
+        cursor.scroll = util.clamp((cursor.scroll + d), 0, 6)
+      end
     end
   elseif enc_mode == 1 then
     if n == 1 then
