@@ -26,6 +26,8 @@ function init()
     refreshmaker()
 end
 
+-- dumb bitch juice
+
 function noloop()
   params:set("play_mode_" .. 0, 4) -- 4 = '1-Shot'
   params:set("play_mode_" .. 1, 4) -- 4 = '1-Shot'
@@ -35,10 +37,18 @@ end
 
 function loadtest(z)
   local junk = {0,1,2,3}
+  z.event[1] = 0
   for i=1,#junk do
-    z.event[i] = junk[i] 
+    z.event[i*4] = junk[i] 
   end
 end
+
+function zzz(z)
+  noloop()
+  loadtest(z)
+end
+
+-- end dbj
 
 local cursor = {
   scroll = 0,
@@ -82,6 +92,7 @@ function redraw()
     -- draw event for each step
     vui.screen_normal()
     vui.move(col_start,vui.row_offset*(i-cursor.scroll)) 
+    screen.text(t.event[i])
     -- draw time for each step
     vui.move(col_start+78,vui.row_offset*(i-cursor.scroll)) 
     screen.text(t.time[i])
@@ -138,14 +149,12 @@ function key(n,z)
       -- insert_noteoff(cursor.x,cursor.y)
     end
   elseif n == 2 then
-
     -- play/stop
     if t.play == 0 and z == 1 then
       t:start()
     elseif t.play == 1 and z == 1 then
       t:stop()
     end
-
   elseif n == 3 then
     -- if stopped, bang+andvance
     if t.play == 0 and z == 1 then

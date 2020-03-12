@@ -10,11 +10,14 @@ function trak.new(default_time,the_count)
   setmetatable(i, trak)
   i.play = 0
   i.prev_time = 0
-  i.event = {}
   i.count = 16 or the_count
   i.step = 1
   i.time_factor = 1
   i.loop = 1
+
+  local event_mt = { __index = function(t,k) return "_" end}
+  i.event = {}
+  i.event = setmetatable(i.event,event_mt)
 
   local time_mt = { __index = function(t,k) return t.default end }
   i.time = {}
@@ -25,10 +28,10 @@ function trak.new(default_time,the_count)
 
   local function trakker(_) 
     local val = i.event[i.step]
-      if val == nil then
-        print('nothing to do')
+      if val == "_" then
+        print('step=' .. i.step .. ' and nothing to do')
       else
-        print('doing -> ' .. val)
+        print('step=' .. i.step .. ' doing -> ' .. val)
         engine.noteOn(val,440,30,val)
       end
   end
