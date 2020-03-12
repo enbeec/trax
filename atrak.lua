@@ -1,4 +1,11 @@
 --- trak
+-- simple tester script
+-- for trax + timber
+-- K2 = play/stop
+-- while playing:
+--   K3 = reset
+-- else:
+--   K3 = bang
 
 engine.name = 'Timber'
 local timb = include("timber/lib/timber_engine")
