@@ -24,6 +24,8 @@ function init()
     timb.load_sample(3 ,_path.audio .. "common/808/808-OH.wav")
     
     refreshmaker()
+
+	zzz(t)
 end
 
 -- dumb bitch juice
