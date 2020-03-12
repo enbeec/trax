@@ -1,7 +1,11 @@
 --- trak
 -- simple tester script
 -- for trax + timber
+--
+-- hold K1 to load test
+--
 -- K2 = play/stop
+--
 -- while playing:
 --   K3 = reset
 -- else:
@@ -25,17 +29,20 @@ function init()
         timb.add_sample_params(i)
     end
   
-    timb.load_sample(0 ,_path.audio .. "common/808/808-BD.wav")
-    timb.load_sample(1 ,_path.audio .. "common/808/808-SD.wav")
-    timb.load_sample(2 ,_path.audio .. "common/808/808-CH.wav")
-    timb.load_sample(3 ,_path.audio .. "common/808/808-OH.wav")
-    
     refreshmaker()
 
-	zzz(t)
+    loadinst() -- see 'dumb bitch juice'
+
 end
 
 -- dumb bitch juice
+
+function loadinst()
+  timb.load_sample(0 ,_path.audio .. "common/808/808-BD.wav")
+  timb.load_sample(1 ,_path.audio .. "common/808/808-SD.wav")
+  timb.load_sample(2 ,_path.audio .. "common/808/808-CH.wav")
+  timb.load_sample(3 ,_path.audio .. "common/808/808-OH.wav")
+end
 
 function noloop()
   params:set("play_mode_" .. 0, 4) -- 4 = '1-Shot'
@@ -52,9 +59,12 @@ function loadtest(z)
   end
 end
 
+local setup
+
 function zzz(z)
   noloop()
   loadtest(z)
+  setup = setup + 1
 end
 
 -- end dbj
@@ -150,6 +160,11 @@ end
 
 function key(n,z)
   if n == 1 then
+    -- more dbj
+    if setup ~= 1 then
+      zzz(t)
+    end
+    -- end more dbj
     enc_mode = z
     cursor.level = (z * 4) + 6
     if n == 2 then
